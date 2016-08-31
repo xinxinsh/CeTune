@@ -1,0 +1,11 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+172.16.66.21 cc01
+172.16.66.22 cc02
+172.16.66.23 cc03
+172.16.66.24 cc04
+10.10.5.21 ceph01
+10.10.5.22 ceph02
+10.10.5.23 ceph03
+10.10.5.24 ceph04

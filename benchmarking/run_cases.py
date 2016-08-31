@@ -32,12 +32,13 @@ def main(args):
 
     if option == "gen_case":
         testcase_list = []
+        test_config = {}
         benchmark = qemurbd.QemuRbd()
-        benchmark_engine_config = benchmark.generate_benchmark_cases()
+        benchmark_engine_config = benchmark.generate_benchmark_cases(test_config)
         fio_list = benchmark_engine_config
 
         benchmark = fiorbd.FioRbd()
-        benchmark_engine_config = benchmark.generate_benchmark_cases()
+        benchmark_engine_config = benchmark.generate_benchmark_cases(test_config)
         fio_list.extend( benchmark_engine_config )
 
         #benchmark = fiocephfs.FioCephFS()
@@ -46,7 +47,7 @@ def main(args):
         #fio_list.extend( benchmark_engine_config )
 
         benchmark = cosbench.Cosbench()
-        benchmark.generate_benchmark_cases()
+        benchmark.generate_benchmark_cases(test_config)
 
         #benchmark = generic.Generic()
         #testcases, benchmark_engine_config = benchmark.generate_benchmark_cases()
@@ -63,6 +64,7 @@ def main(args):
                 p = line.split()
                 testcase_list.append({"engine":p[0],"parameter":p[1:]})
         for testcase in testcase_list:
+	    print testcase
             if testcase["engine"] == "qemurbd":
                 benchmark = qemurbd.QemuRbd()
             if testcase["engine"] == "fiorbd":

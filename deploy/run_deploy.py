@@ -83,6 +83,7 @@ def main(args):
             mydeploy = deploy_rgw.Deploy_RGW(tuning)
         else:
             mydeploy = deploy.Deploy(tuning)
+        print ":::::::::::::::: ", tuning
         mydeploy.gen_cephconf(ceph_disk=args.ceph_disk)
     if args.operation == "install_binary":
         mydeploy = deploy.Deploy()

@@ -37,6 +37,9 @@ class IPHandler:
 
     def dottedQuadToNum(self,ip):
         res = re.search(r'(\d+).(\d+).(\d+).(\d+)',ip)
+        if res is None:
+            ip_hex = "%02x" % int(0)
+	    return int(ip_hex, 16)
         ip_hex = "%02x" % int(res.group(1))
         ip_hex += "%02x" % int(res.group(2))
         ip_hex += "%02x" % int(res.group(3))
@@ -58,11 +61,18 @@ class IPHandler:
     def getIpByHostInSubnet(self, hostname, subnet ):
         "Get IP by hostname and filter with subnet"
         (hostname, aliaslist, ipaddrlist) = socket.gethostbyname_ex(hostname)
+        print "======= ", hostname, aliaslist, ipaddrlist
         try:
             network, netmask = self.networkMask(subnet)
+            print ">>>>>>>> ",network,netmask 
         except:
             return ipaddrlist[0]
-        for ip in ipaddrlist:
+        ips=[]
+	ips.append(hostname)
+	ips.extend(aliaslist)
+	ips.extend(ipaddrlist)
+        for ip in ips:
+	    print "******* ", ip
             if self.addressToNetwork(self.dottedQuadToNum(ip),netmask) == network:
                 return ip
         return ipaddrlist[0]
@@ -308,7 +318,6 @@ def _decode_dict(data):
 def format_pdsh_return(pdsh_res):
     formatted_output = {}
     for line in pdsh_res.split('\n'):
-        #print line
         try:
             node, output = line.split(':', 1)
         except:

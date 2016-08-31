@@ -171,13 +171,15 @@ class FioRbd(Benchmark):
         fio_template.append("    ramp_time=%s" % warmup_time)
         fio_template.append("    runtime=%s" % runtime)
         fio_template.append("    ioengine=rbd")
+        fio_template.append("    numjobs=2")
+        fio_template.append("    group_reporting")
         fio_template.append("    clientname=${RBDNAME}")
         fio_template.append("    pool=${POOLNAME}")
         fio_template.append("    rbdname=${RBDNAME}")
         if io_pattern in ["randread", "randwrite", "randrw"]:
             fio_template.append("    iodepth_batch_submit=1")
             fio_template.append("    iodepth_batch_complete=1")
-            fio_template.append("    norandommap")
+            #fio_template.append("    norandommap")
             if fio_randrepeat == "false":
                 fio_template.append("    randrepeat=0")
             if fio_capping != "false":

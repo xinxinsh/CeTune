@@ -49,7 +49,11 @@ class Tuner:
         else:
             with_rgw = False
         for section in self.worksheet:
-            for work in self.worksheet[section]['workstages'].split(','):
+	    print ">>>>>>>> section ", section
+	    print ">>>>>>>> section sheet", self.worksheet[section]
+	    print ">>>>>>>> stages ", self.worksheet[section]['workstages']
+	    print type(self.worksheet[section]['workstages'])
+            for work in self.worksheet[section]['workstages']:
                 if work == "deploy":
                     common.printout("LOG","Check ceph version, reinstall ceph if necessary")
                     self.apply_version(section)
@@ -151,6 +155,18 @@ class Tuner:
             osd_config.update(res[node])
         return osd_config.get()
 
+    def get_client_config(self):
+        user = self.cluster["user"]
+        clients = self.cluster["client"]
+
+        stdout, stderr = common.pdsh(user, clients, 'path=`find /var/run/ceph -name "*rbd*asok" | head -1`; timeout 5 ceph --admin-daemon $path config show', option="check_return")
+        res = common.format_pdsh_return(stdout)
+        client_config = common.MergableDict()
+        print res
+        for node in res:
+            client_config.update(res[node])
+        return client_config.get()
+
     def get_mon_config(self):
         user = self.cluster["user"]
         mons = self.cluster["mons"]
@@ -158,6 +174,7 @@ class Tuner:
         stdout, stderr = common.pdsh(user, mons, 'path=`find /var/run/ceph -name "*mon*asok" | head -1`; timeout 5 ceph --admin-daemon $path config show', option="check_return")
         res = common.format_pdsh_return(stdout)
         mon_config = common.MergableDict()
+        print res
         for node in res:
             mon_config.update(res[node])
         return mon_config.get()
@@ -168,6 +185,7 @@ class Tuner:
 
         stdout, stderr = common.pdsh(user, [controller], 'timeout 5 ceph osd dump | grep pool', option="check_return")
         res = common.format_pdsh_return(stdout)
+        print ">>>>>>>>>> ",res
         pool_config = {}
         for node in res:
             res_pool = res[node].split('\n')
@@ -204,6 +222,8 @@ class Tuner:
 
         #get [pool] information
         config['pool'] = self.get_pool_config()
+        #get [client] info
+        config['client'] = self.get_client_config()
 
         return config
 
@@ -249,6 +269,7 @@ class Tuner:
             if key == "global":
                 key_list["osd"] = "try"
                 key_list["mon"] = "try"
+                key_list["client"] = "try"
             elif key not in ['workstages', 'benchmark_engine']:
                 key_list[key] = key
         try_count = 0
@@ -260,7 +281,10 @@ class Tuner:
             else:
                 tuning = self.worksheet[jobname][key]
             if key in self.cur_tuning:
+                print "************",key, key_list[key]
+                print "}}}}}}}}}}}}}}}} ",tuning
                 res = common.check_if_adict_contains_bdict(self.cur_tuning[key], tuning)
+                print "((((((((( res ",res
                 if not res and key not in tuning_diff:
                     if key_list[key] != "try":
                         tuning_diff.append(key)
@@ -285,6 +309,7 @@ class Tuner:
         else:
             tmp_tuning_diff = ['global']
 
+        print "[[[[[[[[[[[[[[[[[ ", tmp_tuning_diff
         if 'pool' in tmp_tuning_diff:
             pool_exist = False
             new_poolname = self.worksheet[jobname]['pool'].keys()[0]
@@ -310,11 +335,12 @@ class Tuner:
             #after create pool, check pool param
             latest_pool_config = self.get_pool_config()
             for param in self.worksheet[jobname]['pool'][new_poolname]:
+		print self.worksheet[jobname]['pool'][new_poolname]
                 if param == 'pg_num' or param not in latest_pool_config[new_poolname]:
                     continue
                 if self.worksheet[jobname]['pool'][new_poolname][param] != latest_pool_config[new_poolname][param]:
                     self.handle_pool(option = 'set', param = {'name':new_poolname, param:self.worksheet[jobname]['pool'][new_poolname][param]})
-        if 'global' in tmp_tuning_diff or 'osd' in tmp_tuning_diff or 'mon' in tmp_tuning_diff:
+        if 'global' in tmp_tuning_diff or 'osd' in tmp_tuning_diff or 'mon' in tmp_tuning_diff or 'client' in tmp_tuning_diff:
             if self.cluster["rgw_enable"]=="true" and len(self.cluster["rgw"]):
                 with_rgw = True
             else:
@@ -325,6 +351,7 @@ class Tuner:
                     continue
                 tuning[section_name] = section
             common.printout("LOG","Apply osd and mon tuning to ceph.conf")
+            print "]]]]]]]]]]]]]]] ", tuning
             if with_rgw:
                 run_deploy.main(['--config', json.dumps(tuning), '--with_rgw',  'gen_cephconf'])
             else:

@@ -1,0 +1,82 @@
+[2016-05-30 16:42:25,042][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ] Invoked (1.5.32): /usr/bin/ceph-deploy install --release jewel ceph02
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ] ceph-deploy options:
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  verbose                       : False
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  testing                       : None
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x1a787a0>
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  cluster                       : ceph
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  dev_commit                    : None
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  install_mds                   : False
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  stable                        : None
+[2016-05-30 16:42:25,043][ceph_deploy.cli][INFO  ]  default_release               : False
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  username                      : None
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  adjust_repos                  : True
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  func                          : <function install at 0x1a04320>
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  install_all                   : False
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  repo                          : False
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  host                          : ['ceph02']
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  install_rgw                   : False
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  install_tests                 : False
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  repo_url                      : None
+[2016-05-30 16:42:25,044][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  install_osd                   : False
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  version_kind                  : stable
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  install_common                : False
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  quiet                         : False
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  dev                           : master
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  local_mirror                  : None
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  release                       : jewel
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  install_mon                   : False
+[2016-05-30 16:42:25,045][ceph_deploy.cli][INFO  ]  gpg_url                       : None
+[2016-05-30 16:42:25,045][ceph_deploy.install][DEBUG ] Installing stable version jewel on cluster ceph hosts ceph02
+[2016-05-30 16:42:25,045][ceph_deploy.install][DEBUG ] Detecting platform for host ceph02 ...
+[2016-05-30 16:44:32,357][ceph_deploy][ERROR ] RuntimeError: connecting to host: ceph02 resulted in errors: HostNotFound ceph02
+
+[2016-07-10 10:55:26,625][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
+[2016-07-10 10:55:26,625][ceph_deploy.cli][INFO  ] Invoked (1.5.32): /usr/bin/ceph-deploy install --release jewel ceph02
+[2016-07-10 10:55:26,626][ceph_deploy.cli][INFO  ] ceph-deploy options:
+[2016-07-10 10:55:26,626][ceph_deploy.cli][INFO  ]  verbose                       : False
+[2016-07-10 10:55:26,626][ceph_deploy.cli][INFO  ]  testing                       : None
+[2016-07-10 10:55:26,626][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x1107518>
+[2016-07-10 10:55:26,626][ceph_deploy.cli][INFO  ]  cluster                       : ceph
+[2016-07-10 10:55:26,626][ceph_deploy.cli][INFO  ]  dev_commit                    : None
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  install_mds                   : False
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  stable                        : None
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  default_release               : False
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  username                      : None
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  adjust_repos                  : True
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  func                          : <function install at 0x1075e60>
+[2016-07-10 10:55:26,627][ceph_deploy.cli][INFO  ]  install_all                   : False
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  repo                          : False
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  host                          : ['ceph02']
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  install_rgw                   : False
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  install_tests                 : False
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  repo_url                      : None
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
+[2016-07-10 10:55:26,628][ceph_deploy.cli][INFO  ]  install_osd                   : False
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  version_kind                  : stable
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  install_common                : False
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  quiet                         : False
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  dev                           : master
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  local_mirror                  : None
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  release                       : jewel
+[2016-07-10 10:55:26,629][ceph_deploy.cli][INFO  ]  install_mon                   : False
+[2016-07-10 10:55:26,630][ceph_deploy.cli][INFO  ]  gpg_url                       : None
+[2016-07-10 10:55:26,630][ceph_deploy.install][DEBUG ] Installing stable version jewel on cluster ceph hosts ceph02
+[2016-07-10 10:55:26,630][ceph_deploy.install][DEBUG ] Detecting platform for host ceph02 ...
+[2016-07-10 10:55:27,265][ceph02][DEBUG ] connected to host: ceph02 
+[2016-07-10 10:55:27,266][ceph02][DEBUG ] detect platform information from remote host
+[2016-07-10 10:55:27,296][ceph02][DEBUG ] detect machine type
+[2016-07-10 10:55:27,304][ceph_deploy.install][INFO  ] Distro info: CentOS Linux 7.1.1503 Core
+[2016-07-10 10:55:27,304][ceph02][INFO  ] installing Ceph on ceph02
+[2016-07-10 10:55:27,307][ceph02][INFO  ] Running command: yum clean all
+[2016-07-10 10:55:27,482][ceph02][DEBUG ] Loaded plugins: fastestmirror
+[2016-07-10 10:55:27,490][ceph02][DEBUG ] Cleaning repos: base cr epel extras updates
+[2016-07-10 10:55:27,490][ceph02][DEBUG ] Cleaning up everything
+[2016-07-10 10:55:27,522][ceph02][DEBUG ] Cleaning up list of fastest mirrors
+[2016-07-10 10:55:27,532][ceph02][INFO  ] Running command: yum -y install epel-release
+[2016-07-10 10:55:27,652][ceph02][DEBUG ] Loaded plugins: fastestmirror
+[2016-07-10 10:55:35,288][ceph_deploy][ERROR ] KeyboardInterrupt
+
