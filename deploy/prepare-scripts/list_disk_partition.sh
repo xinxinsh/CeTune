@@ -68,7 +68,6 @@ command=$1
 echo "deploy_osd_servers: $list_server"
 osd_host_list=`echo $list_server | sed 's/,/ /g'`
 index=0
-osd_host_list=ceph01
 for host in $osd_host_list
 do
     echo "============start create partition on host $host============"
